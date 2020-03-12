@@ -24,30 +24,34 @@ app.get('/paymentHistory',  (req, res) => {
         });
 });
   
-app.post('/paymentHistory', (req, res) => {
+app.put('/paymentHistory/insert/:id', (req, res) => {
 
+    let id = req.params.id;
     let body = req.body;
     
-    let paymentHistory = new PaymentHistory({
+/*     let paymentHistory = {
         period: body.period,
         amount: body.amount,
         balance: body.balance,
         payment: body.payment
-    });
+    }; */
 
-    paymentHistory.save((err, paymentHistoryDB) => {
-        if (err) {
-            return res.status(400).json({
-                ok: false,
-                err
+    PaymentHistory.findByIdAndUpdate(id,
+        { $push: { 'payment_history': body} },
+        { strict: false, new: true, runValidators: true },
+        (err, paymentHistoryDB) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                });
+            }
+
+            res.json({
+                ok: true,
+                paymentHistory: paymentHistoryDB
             });
-        }
-
-        res.json({
-            ok: true,
-            paymentHistory: paymentHistoryDB
         });
-    });
 
 });
 

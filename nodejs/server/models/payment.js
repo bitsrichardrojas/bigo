@@ -50,12 +50,11 @@ let paymentSchema = new Schema({
         type: Number,
         required: [true, 'El código de país es necesario'] 
     },
-    payment_history: [{ 
+    payment_history: { 
         type: Schema.Types.ObjectId, 
         ref: 'PaymentHistory',
-        default: null, 
-        required: false 
-    }]
+        required: true
+    }
 });
 
 paymentSchema.plugin(uniqueValidator, {
