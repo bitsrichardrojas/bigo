@@ -1,0 +1,20 @@
+header{
+    background-color: #0152a5; 
+    width: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    figure{
+        margin: 0;
+        img{
+            width: 150px;
+        }
+    }
+    div.login{
+        span{    
+            color: #fff;
+            margin-right: 12px;
+        }
+    }
+}
