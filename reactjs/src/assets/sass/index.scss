@@ -1,3 +1,17 @@
 body{
     font-family: 'Roboto', sans-serif;
 }
+
+section{
+    display: flex;
+
+    div.facturas{
+        flex:1;
+    }
+    div.info{
+        background-color: #f0f0f0;
+        border: 2px solid transparent;
+        flex:2;
+        width: 100%;
+    }
+}

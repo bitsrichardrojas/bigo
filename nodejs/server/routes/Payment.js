@@ -23,6 +23,61 @@ app.get('/payment',  (req, res) => {
         
         });
 });
+
+app.get('/payment/:id',  (req, res) => {
+    
+    let id = req.params.id;
+
+    Payment.findById(id)
+        .populate('payment_history')
+        .exec((err, payment) => {
+
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                });
+            }
+    
+            if (!payment) {
+                return res.status(400).json({
+                    ok: false,
+                    err: {
+                        message: 'El id no es correcto'
+                    }
+                });
+            }
+    
+            res.json({
+                ok: true,
+                payment
+            });
+        
+        });
+});
+
+app.get('/payment/buscar/:termino', (req, res) => {
+
+    let termino = req.params.termino;
+
+    let regex = new RegExp(termino, 'i');
+
+    Payment.find({line_number: regex})
+        .populate('payment_history')
+        .exec((err, payments) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                });
+            }
+
+            res.json({
+                ok: true,
+                payments
+            });
+        });
+});
   
 app.post('/payment', (req, res) => {
 
@@ -53,6 +108,25 @@ app.post('/payment', (req, res) => {
     
         payment.save((err, paymentDB) => {
             if (err) {
+
+                PaymentHistory.findByIdAndRemove(paymentHistoryDB._id, (err, paymentHistoryBorrada) => {
+                    if (err) {
+                        return res.status(400).json({
+                            ok: false,
+                            err
+                        });
+                    }
+            
+                    if (paymentHistoryBorrada === null) {
+                        return res.status(400).json({
+                            ok: false,
+                            err: {
+                                message: 'Historial de factura no encontrado'
+                            }
+                        });
+                    }
+                });
+                
                 return res.status(400).json({
                     ok: false,
                     err
