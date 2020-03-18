@@ -29,12 +29,16 @@ function App() {
     const nuevasFacturas = facturas.filter(factura => factura._id !== id);
     guardarFactura(nuevasFacturas[0]);
     guardarFacturas(nuevasFacturas);
+
+    //Mover pantalla hacia arriba
+    const top = document.querySelector('.login');
+    top.scrollIntoView({behavior: 'smooth'});
   };
 
   return (
     <Fragment>
       <Header />
-      <h1>Pagar facturas</h1>
+      <h1 className="title-header">Pagar facturas</h1>
       <section>
         <div className="facturas">
           <Buscar guardarFacturas={guardarFacturas} guardarFactura={guardarFactura}/>

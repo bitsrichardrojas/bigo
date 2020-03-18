@@ -1,0 +1,40 @@
+form{
+    margin-bottom: 1rem;
+
+    >div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        border: 1px solid #f0f0f0;
+    }
+
+    input{
+        border: none;
+        border-right: none;
+        padding: 8px;
+        font-size: 14px;
+        width: 100%;
+
+        &:focus{
+            outline:0px;
+        }
+    }
+    
+    button{
+        border: none;
+        border-left: none;
+        padding: 8px;
+        margin: 0;
+        &:focus{
+            outline:0px;
+        }
+        i{
+            font-size: 12px;
+            margin-right: 6px;
+            color: #66b2ff;
+            transform: rotate(75deg);
+        }
+    }
+}
+

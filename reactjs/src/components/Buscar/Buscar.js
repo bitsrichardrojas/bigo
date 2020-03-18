@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './buscar.scss';
 import Axios from 'axios';
 
 const Buscar = ({guardarFacturas, guardarFactura}) => {
@@ -37,17 +38,15 @@ const Buscar = ({guardarFacturas, guardarFactura}) => {
             onSubmit={buscarFacturas}
         >
             {error ? <p className="alerta-error">El formulario esta vacío</p> : null}
-
-            <input 
-                type="text" 
-                name="line_number" 
-                placeholder="Filtrar por número"
-                onChange={obtenerBuqueda}
-            />
-            <input 
-                type="submit"
-                value="Buscar"
-            />
+            <div>
+                <input 
+                    type="text" 
+                    name="line_number" 
+                    placeholder="Filtrar por número..."
+                    onChange={obtenerBuqueda}
+                />
+                <button type="submit"><i className="fas fa-search"></i></button>
+            </div>
         </form>
      );
 }

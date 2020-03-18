@@ -1,0 +1,122 @@
+.info{
+    h2{
+        text-align: center;
+        flex: 1;
+        color: #565656;
+        span{
+            margin-right: 1rem;
+            letter-spacing: 4px;
+        }
+
+        @media only screen and (max-width: 768px){
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+    }
+    .details{
+        display: flex;
+        justify-content: space-between;
+        flex: 3;
+
+        @media only screen and (max-width: 768px){
+            justify-content: center;
+            flex: 1;
+            flex-flow: column;
+            align-items: center;
+            align-content: center;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .detail-left{
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            font-size: 18px;
+            >div{
+                >span{
+                    color: #565656;
+                    &:first-child{
+                        display: block;
+                    }
+
+                    &:last-child{
+                        font-style: italic;
+                    }
+                }
+                .invoice{
+                    font-size: 26px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .detail-right{
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            font-size: 20px;
+            >div{
+                &:first-child{
+                    >span{
+                        &:last-child{
+                            font-size: 1.2rem;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                &:last-child{
+                    >span{
+                        &:last-child{
+                            font-size: 3rem;
+                            font-weight: bold;
+                        }
+                    }
+                }
+                >span{
+                    color: #565656;
+                    &:first-child{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        @media only screen and (max-width: 768px){
+            flex-flow: column;
+        }
+
+        a{
+            color: #0152a5;
+            text-decoration: underline;
+            font-style: italic;
+            transition: color .3s ease-in;
+            @media only screen and (max-width: 768px){
+                margin-bottom: 1rem;
+            }
+            &:hover{
+                color: #66b2ff;
+            }
+        }
+
+        button{
+            background-color: #3d8bcd;
+            color: #FFF;
+            border: none;
+            padding: .6rem 3rem;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color .3s ease-in;
+
+            &:hover{
+                background-color: #66b2ff;
+            }
+        }
+    }
+}

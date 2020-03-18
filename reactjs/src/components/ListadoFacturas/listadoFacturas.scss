@@ -1,3 +1,77 @@
-a{
-    cursor: pointer;
+
+div.listado-facturas{
+    height: 100%;
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+    font-size: 14px;
+
+    @media only screen and (max-width: 768px){
+        font-size: 14px;
+        margin-bottom: 1rem;
+        max-height: 150px;
+    }
+    div.section-payment{
+
+        border-radius: 6px 6px 0 0;
+        padding: .5rem;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all .3s ease;
+
+        @media only screen and (max-width: 768px){
+            margin-right: 1rem;
+            width: 100%;
+            max-width: 100%;
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        >div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &:first-child{
+                >span{
+                    font-size: 14px;
+                    &:first-child{
+                        color: #9c9c9c;                    
+                    }
+                    &:last-child{
+                        font-weight: 500;
+                        font-style: italic;
+                    }
+                }
+            }
+
+            &:last-child{
+                >span{
+                    &:first-child{
+                        font-size: 18px;
+                        font-weight: 400;
+                        color: #565656;
+                    }
+                    &:last-child{
+                        font-size: 12px;
+                        color: #9c9c9c;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+
+        &:hover{
+            text-decoration: none;
+            background-color: #66b2ff;
+            cursor: pointer;
+            *{
+                color: #FFF !important;
+            }
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+            border-bottom: 0px solid #f0f0f0;
+        }
+    }
 }

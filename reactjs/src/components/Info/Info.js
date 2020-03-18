@@ -1,51 +1,65 @@
 import React, {Fragment, useState} from 'react';
+import './info.scss';
 import Modal from '../Modal/Modal';
+import getDate from '../../helpers/FormatDate';
 
 const Info = ({factura, eliminarFactura}) => {
 
     const [modalIsOpen,setIsOpen] = useState(false);
     
-    function openModal() {
-        setIsOpen(true);
-    }
+    const openModal = () => setIsOpen(true);
+
+    const {
+        _id,
+        country_mobile_code,
+        formatted_line_number, 
+        expiration_date, 
+        last_payment_date, 
+        invoice_status, 
+        payment_reference, 
+        amount,
+        payment_history
+    } = factura;
 
     return ( 
         <Fragment>
-            <h2><span>(+{factura.country_mobile_code})</span>{factura.formatted_line_number}</h2>
-            <section>
-                <div>
+            <h2><span>(+{country_mobile_code})</span>{formatted_line_number}</h2>
+            <div className="details">
+                <div className="detail-left">
                     <div>
                         <span>Fecha de vencimiento:</span>
-                        <span>{factura.expiration_date}</span>
+                        <span>{getDate(expiration_date)}</span>
                     </div>
                     <div>
                         <span>Fecha de último pago:</span>
-                        <span>{factura.last_payment_date}</span>
-
+                        <span>{getDate(last_payment_date)}</span>
                     </div>
                     <div>
                         <span>Estado de la factura:</span>
-                        <span>{factura.invoice_status}</span>
-
+                        <span className={`invoice ${invoice_status === 'Vencida' ? 'orange' : 'blue'}`}>{invoice_status}</span>
                     </div>
                 </div>
-                <div>
+                <div className="detail-right">
                     <div>
                         <span>Referencia de pago:</span>
-                        <span>{factura.payment_reference}</span>
-
+                        <span>{payment_reference}</span>
                     </div>
                     <div>
                         <span>Valor a pagar:</span>
-                        <span><i>$</i>{factura.amount}</span>
+                        <span><i>$</i>{amount}</span>
                     </div>
                 </div>
-            </section>
+            </div>
             <div className="actions">
                 <a href="#!" onClick={openModal}>Ver historial de pagos</a>
-                <button onClick={() => eliminarFactura(factura._id)}>Pagar</button>  
+                <button onClick={() => eliminarFactura(_id)}>Pagar</button>  
             </div>
-            <Modal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}/>
+            {   
+                modalIsOpen 
+                ? <Modal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen} payment_history={payment_history} />
+                : null
+            }
+            
         </Fragment>
     );
 }
